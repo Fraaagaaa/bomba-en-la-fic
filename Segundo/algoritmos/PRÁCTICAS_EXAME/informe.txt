@@ -1,0 +1,33 @@
+En esta práctica se estudia la complejidad de un algortimo diseñado para encontrar el elemento k-esimo de un vector
+se han usado como prueba encontrar el 5º elemento mayor y el de la posición, n/3 siendo n el tamaño del vector
+
+CARACTERÍSTICAS DE LA MÁQUINA
+
+ Modelo ordenador: Acer Nitro-AN515-58
+ Version del sistema operativo: Ubuntu 24.04.1 LTS
+ Tipo de sistema operativo: 64 bits
+ Kernel: 5.15.0-122-generic
+ Procesador: Intel i7-12700H
+ Memoria RAM: 16 GB
+
+Compilador: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+
+UNIDADES DE MEDIDA
+ Los tiempos serán medidos en microsegundos.
+
+|   |    2000 |    511.00 |     0.1194780 |       0.54638 |     5.3432181 |
+|(*)|    4000 |     12.13 |     0.0013231 |       0.00695 |     0.0836806 |
+|(*)|    8000 |      8.53 |     0.0004341 |       0.00262 |     0.0388235 |
+|(*)|   16000 |     17.03 |     0.0004043 |       0.00280 |     0.0511379 |
+|(*)|   32000 |     33.21 |     0.0003678 |       0.00293 |     0.0657929 |
+|(*)|   64000 |     63.72 |     0.0003292 |       0.00301 |     0.0832852 |
+|(*)|  128000 |    139.77 |     0.0003369 |       0.00354 |     0.1205280 |
+
+
+|(*)|    2000 |     56.73 |     0.0037318 |       0.01326 |     0.1297146 |
+|(*)|    4000 |    142.98 |     0.0043097 |       0.01560 |     0.1877705 |
+|(*)|    8000 |    325.38 |     0.0045256 |       0.01656 |     0.2454250 |
+|   |   16000 |    804.00 |     0.0051909 |       0.01909 |     0.3483053 |
+|   |   32000 |   1596.00 |     0.0048079 |       0.01768 |     0.3971119 |
+|   |   64000 |   3192.00 |     0.0045068 |       0.01649 |     0.4561618 |
+|   |  128000 |   7684.00 |     0.0051048 |       0.01852 |     0.6306950 |
