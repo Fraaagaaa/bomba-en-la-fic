@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitWithMe - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h1>SplitWithMe</h1>
+        <nav>
+            <button class="nav-btn active" data-target="pestaña-gastos">Gastos</button>
+            <button class="nav-btn" data-target="pestaña-amigos">Amigos</button>
+        </nav>
+    </aside>
+
+    <main class="content">
+        
+        <section id="pestaña-gastos" class="view-section">
+            <div class="summary-container">
+                <div class="card">
+                    <h2>A recibir</h2>
+                    <p id="total-recibir" class="positive-val">+120.00 €</p>
+                </div>
+                <div class="card">
+                    <h2>A pagar</h2>
+                    <p id="total-pagar" class="negative-val">-45.50 €</p>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2>Historial de Gastos</h2>
+                <table class="expenses-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Pagado por</th>
+                            <th>Importe</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-gastos-body">
+                        <tr>
+                            <td>24 Jun 2025</td>
+                            <td><strong>Cena</strong> <br><small style="color:gray">Ana, Luis, Mar</small></td>
+                            <td>Ana</td>
+                            <td class="negative-val">90.00 €</td>
+                            <td><button class="btn-edit">✏️ Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="pestaña-amigos" class="view-section hidden">
+            <h2>Gestión de Amigos</h2>
+            <div class="card" style="max-width: 400px; text-align: left;">
+                <input type="text" id="friend-name" placeholder="Nombre del amigo..." style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="btn-edit" style="background: var(--sidebar-blue); color: white; border: none; padding: 10px 20px;">Añadir Amigo</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

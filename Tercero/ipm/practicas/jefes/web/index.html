@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Gastos - SplitWithMe Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>SplitWithMe</h1>
+        <nav>
+            <ul>
+                <li><a href="#" aria-current="page">Gastos</a></li>
+                <li><a href="#">Amigos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="balance-summary" aria-label="Resumen de saldos">
+            <article class="balance-card positive">
+                <h2>A recibir</h2>
+                <p>+120.00 €</p>
+            </article>
+            <article class="balance-card negative">
+                <h2>A pagar</h2>
+                <p>-45.50 €</p>
+            </article>
+        </section>
+
+        <section class="expenses-report" aria-labelledby="expenses-title">
+            <h2 id="expenses-title" class="section-title">Historial de Gastos</h2>
+            
+            <div role="table" aria-label="Lista de gastos" class="expenses-list">
+                
+                <div role="rowgroup" class="thead">
+                    <div role="row">
+                        <span role="columnheader">Fecha</span>
+                        <span role="columnheader">Descripción</span>
+                        <span role="columnheader">Pagado por</span>
+                        <span role="columnheader">Importe</span>
+                    </div>
+                </div>
+
+                <article role="row" class="expense-item">
+                    <div role="cell" data-label="Fecha" class="col-date">
+                        <time datetime="2025-06-24">24 Jun 2025</time>
+                    </div>
+                    <div role="cell" data-label="Descripción" class="col-desc">
+                        <strong>Cena</strong>
+                        <span class="participants-info">Ana, Luis, Mar</span>
+                    </div>
+                    <div role="cell" data-label="Pagado por" class="col-payer">
+                        Ana
+                    </div>
+                    <div role="cell" data-label="Importe" class="col-amount amount-negative">
+                        90.00 €
+                    </div>
+                </article>
+
+                <article role="row" class="expense-item">
+                    <div role="cell" data-label="Fecha" class="col-date">
+                        <time datetime="2025-06-22">22 Jun 2025</time>
+                    </div>
+                    <div role="cell" data-label="Descripción" class="col-desc">
+                        <strong>Museo</strong>
+                        <span class="participants-info">Ana, Mar</span>
+                    </div>
+                    <div role="cell" data-label="Pagado por" class="col-payer">
+                        Mar
+                    </div>
+                    <div role="cell" data-label="Importe" class="col-amount amount-positive">
+                        30.00 €
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 SplitWithMe Team</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* === VARIABLES (Traídas de vuestro style.css GTK) === */
+:root {
+    --primary-blue: #0d47a1;
+    --bg-color: #fafafa;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+    --positive-green: #43a047;
+    --negative-red: #e53935;
+    --card-bg: #ffffff;
+}
+
+/* === BASE (MÓVIL) === */
+body {
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/* Header tipo App Móvil */
+.app-header {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.app-header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.app-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.app-header a[aria-current="page"] {
+    font-weight: bold;
+    opacity: 1;
+    border-bottom: 2px solid white;
+}
+
+main {
+    padding: 1rem;
+}
+
+/* Resumen de Saldos (Tarjetas simples) */
+.balance-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.balance-card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.balance-card h2 { margin: 0; font-size: 0.9rem; color: #666; }
+.balance-card.positive p { color: var(--positive-green); font-weight: bold; font-size: 1.2rem; margin: 5px 0 0; }
+.balance-card.negative p { color: var(--negative-red); font-weight: bold; font-size: 1.2rem; margin: 5px 0 0; }
+
+/* --- PATRÓN "NO MORE TABLES" PARA GASTOS --- */
+
+/* En móvil, ocultamos la cabecera de la tabla */
+.thead { display: none; }
+
+/* Cada gasto es una tarjeta */
+.expense-item {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column; /* Apilamos los datos verticalmente */
+    gap: 5px;
+}
+
+/* Estilos para los datos dentro de la tarjeta */
+.col-date { font-size: 0.85rem; color: #888; }
+.col-desc { font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; }
+.col-desc strong { color: var(--text-color); }
+.participants-info { font-size: 0.75rem; color: #999; background: #eee; padding: 2px 6px; border-radius: 4px; }
+.col-payer { font-size: 0.9rem; }
+.col-payer::before { content: "Pagado por: "; color: #666; } /* Label visual */
+
+.col-amount { 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    text-align: right; 
+    margin-top: 5px; 
+    border-top: 1px solid #eee; 
+    padding-top: 5px; 
+}
+.amount-positive { color: var(--positive-green); }
+.amount-negative { color: var(--negative-red); }
+
+
+/* === TABLET Y ESCRITORIO (A partir de 768px) === */
+/* Aquí recreamos el layout de vuestra App GTK */
+@media (min-width: 768px) {
+    
+    body {
+        /* Layout Sidebar + Contenido */
+        display: grid;
+        grid-template-columns: 250px 1fr; /* Sidebar fija 250px */
+        grid-template-rows: 100vh;
+        overflow: hidden; /* Evitar scroll en el body, scroll en main */
+    }
+
+    /* Transformamos el Header en Sidebar (como en vuestro GTK) */
+    .app-header {
+        grid-column: 1;
+        grid-row: 1;
+        height: 100%;
+        text-align: left;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .app-header nav ul {
+        flex-direction: column; /* Lista vertical */
+        gap: 0;
+    }
+    
+    .app-header a {
+        display: block;
+        padding: 10px;
+        border-radius: 6px;
+        transition: background 0.3s;
+    }
+    
+    .app-header a:hover {
+        background: rgba(255, 255, 255, 0.1); /* Efecto hover del GTK */
+    }
+
+    main {
+        grid-column: 2;
+        grid-row: 1;
+        overflow-y: auto; /* Scroll solo en el contenido */
+        padding: 40px;
+        max-width: 1000px; /* Ancho máximo para legibilidad */
+    }
+
+    /* --- TRANSFORMACIÓN A TABLA (GRID) --- */
+    
+    /* Mostramos la cabecera */
+    .thead { 
+        display: grid; 
+        grid-template-columns: 120px 2fr 150px 120px; /* Definir anchos de columna */
+        font-weight: bold;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        color: #222;
+    }
+
+    .expenses-list {
+        display: block; /* Contenedor normal */
+    }
+
+    .expense-item {
+        display: grid; /* Convertimos la tarjeta en fila de grid */
+        grid-template-columns: 120px 2fr 150px 120px; /* Mismos anchos que cabecera */
+        align-items: center;
+        box-shadow: none; /* Quitamos sombra de tarjeta */
+        border: none;
+        border-bottom: 1px solid #eee; /* Línea separadora simple */
+        border-radius: 0;
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    /* Reset de estilos móviles para verlos como celdas */
+    .col-amount { 
+        text-align: left; 
+        border: none; 
+        margin: 0; 
+        padding: 0; 
+    }
+    .col-payer::before { content: none; } /* Quitamos el label "Pagado por" */
+    
+    /* Zebra striping como en vuestro CSS GTK */
+    .expense-item:nth-child(even) {
+        background-color: #fafafa;
+    }
+    
+    /* Hover en filas */
+    .expense-item:hover {
+        background-color: #e3f2fd; /* Azulito hover de vuestro CSS */
+    }
+}
