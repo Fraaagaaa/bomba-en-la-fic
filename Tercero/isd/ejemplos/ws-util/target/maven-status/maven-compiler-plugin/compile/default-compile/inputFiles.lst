@@ -1,0 +1,13 @@
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/configuration/ConfigurationParametersManager.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/configuration/PropertiesUtil.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/exceptions/InputValidationException.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/exceptions/InstanceNotFoundException.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/json/ExceptionToJsonConversor.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/json/ObjectMapperFactory.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/json/exceptions/ParsingException.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/servlet/RestHttpServletTemplate.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/servlet/ServletUtils.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/servlet/ThriftHttpServletTemplate.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/sql/DataSourceLocator.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/sql/SimpleDataSource.java
+/home/fraga/fic/isd/ejemplos/ws-util/src/main/java/es/udc/ws/util/validation/PropertyValidator.java

@@ -1,0 +1,11 @@
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/ClientEncuestaService.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/ClientEncuestaServiceFactory.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/dto/ClientEncuestaDto.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/dto/ClientRespuestaDto.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/exceptions/ClientEncuestaCanceladaException.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/exceptions/ClientEncuestaExpirationException.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/rest/RestClientAppService.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/rest/json/JsonToClientEncuestaDtoConversor.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/rest/json/JsonToClientExceptionConversor.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/service/rest/json/JsonToClientRespuestaDtoConversor.java
+/home/fraga/fic/isd/isd-013/ws-app-client/src/main/java/es/udc/ws/app/client/ui/AppServiceClient.java

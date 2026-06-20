@@ -1,0 +1,16 @@
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movie/AbstractSqlMovieDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movie/Jdbc3CcSqlMovieDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movie/Movie.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movie/SqlMovieDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movie/SqlMovieDaoFactory.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movieservice/MovieService.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movieservice/MovieServiceFactory.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movieservice/MovieServiceImpl.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movieservice/exceptions/MovieNotRemovableException.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/movieservice/exceptions/SaleExpirationException.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/sale/AbstractSqlSaleDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/sale/Jdbc3CcSqlSaleDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/sale/Sale.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/sale/SqlSaleDao.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/sale/SqlSaleDaoFactory.java
+/home/fraga/Downloads/examples/ws-javaexamples-3.9.0/ws-movies/ws-movies-model/src/main/java/es/udc/ws/movies/model/util/ModelConstants.java

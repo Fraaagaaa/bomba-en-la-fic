@@ -1,0 +1,17 @@
+400 Input validation exception
+404 Instance not found exception
+403 Excepciones definidas por mi (encuesta cancelada y encuesta finalizada)
+
+errorType: nombre de la excepción sin la terminación excpetion
+Hay que meterle los atributos que tengan las clases.
+Hay que meterle en message el error que de de resultado
+
+
+
+
+
+
+
+Crear las tablas en la bd ws
+cd ws-app-model
+mvn sql:execute
