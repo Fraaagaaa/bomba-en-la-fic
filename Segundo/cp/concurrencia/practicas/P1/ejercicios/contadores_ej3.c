@@ -1,0 +1,88 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+
+#define ITERACIONES 1000
+#define ESPERA 10
+#define N_THREADS 20
+
+void *f(void *ptr);
+
+typedef struct contadores{
+  volatile int a;
+  volatile int b;
+} contadores;
+
+typedef struct {
+    volatile int *sumar;
+    volatile int *restar;
+} args_thread;
+
+void *f(void *ptr)
+{
+    args_thread *args = (args_thread*)ptr;
+    int i;
+    for(i = 0; i < ITERACIONES; i++)
+    {
+        (*args->sumar)++;
+        usleep(ESPERA);
+
+        (*args->restar)--;
+        usleep(ESPERA);
+    }
+    return NULL;
+}
+void *monitor(void *ptr)
+{
+    contadores *contador = (contadores*)ptr;
+    int i, suma;
+    for(i = 0; i < ITERACIONES; i++)
+    {
+        suma =  contador->a + contador->b;
+        printf("a = %d \tb = %d\tsuma =%d \n", contador->a, contador->b, suma);
+        usleep(ESPERA);
+    }
+    return NULL;
+}
+
+int main()
+{
+    pthread_t thread_a[N_THREADS];
+    pthread_t thread_b[N_THREADS];
+    pthread_t thread_monitor;
+       
+
+    contadores *contador = malloc(sizeof(contadores));
+    contador->a = 0;
+    contador->b = 0;
+    
+
+    pthread_create(&thread_monitor, NULL, monitor, &contador);
+
+    args_thread *args_a = malloc(sizeof(args_thread) * N_THREADS);
+    for(int i = 0; i < N_THREADS; i++)
+    {
+        args_a[i].sumar = &contador->a;
+        args_a[i].restar = &contador->b;
+        pthread_create(&thread_a[i], NULL, f, &args_a[i]);
+    }
+
+    args_thread args_b[N_THREADS];
+    for(int i = 0; i < N_THREADS; i++)
+    {
+        args_b[i].sumar = &contador->b;
+        args_b[i].restar = &contador->a;
+        pthread_create(&thread_b[i], NULL, f, &args_b[i]);
+    }
+
+    for(int i = 0; i < N_THREADS; i++) pthread_join(thread_a[i], NULL);
+    for(int i = 0; i < N_THREADS; i++) pthread_join(thread_b[i], NULL);
+    pthread_join(thread_monitor, NULL);
+
+
+    printf("a=%d b=%d\n", contador->a, contador->b);
+    free(args_a);
+    free(contador);
+    return 0;
+}
