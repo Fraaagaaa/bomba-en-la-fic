@@ -1,0 +1,10 @@
+# Arquitectura en capas
+Baséase na **organización dos compoñentes do sistema en etapas secuenciais (capas)**, que agrupan *responsabilidades* concretas, e de xeito que cada capa só recibe peticións da anterior e só envía peticións á seguinte. A maior **vantaxe** que presenta é a locaclización de cambios, xa que se unha capa cambia o cambio debe afectar só ás adxacentes. O maior **inconveniente** é que pode resultar **artificial** a organización de responsabilidades deste xeito; ademais, o feito de que as peticións percorran todas as capas **limita o rendemento**.
+## Caracterización da arquitectura en capas
+Descripción: Organiza o sistema en capas de responsabilidade concreta. Todas as capas participan na resolución de cada petición que se fai ao sistema. Cada capa só proporciona servizos á capa inmediatamente superior
+<br>
+Aplicabilidade: Úsase cando o fluxo de negocio ou lóxica de procesamento favorece esa división das reponsabilidades de xeito secuencial.
+<br>
+Vantaxes: Permítese substituír/reutilizar capas completas sempre que se manteña a interface coas capas adxacentes. A posibilidade de implementar mecanismos de seguridade específicos por capa pode incrementar a fiabilidade do sistema. É un estilo que adoita favorecer a portabilidade e o soporte multi-plataforma. Favorece tamén o reparto de traballo entre varios equipos de desenvolvemento ou entre persoas dun equipo.
+<br>
+Desvantaxes: Pode resultar difícil realizar unha "división horizontal" (por capas) das funcionalidades dun sistema. A necesidade de que cada petición atravese todas as capas para ser procesada, e despois novamente para ser devolta, é unha limitación ao rendemento. Aínda así, non é recomendable que unha capa acceda a capas máis inferiores directamente, xa que isto conduce invariablemente ao deterioro da arquitectura.
