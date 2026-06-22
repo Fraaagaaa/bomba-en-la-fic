@@ -1,9 +1,0 @@
-es/udc/ws/app/restservice/json/AppExceptionToJsonConversor.class
-es/udc/ws/app/restservice/json/JsonToRestRespuestaDtoConversor.class
-es/udc/ws/app/restservice/servlets/RespuestaServlet.class
-es/udc/ws/app/restservice/dto/RestEncuestaDto.class
-es/udc/ws/app/restservice/dto/RestRespuestaDto.class
-es/udc/ws/app/restservice/json/JsonToRestEncuestaDtoConversor.class
-es/udc/ws/app/restservice/dto/EncuestaToRestEncuestaDtoConversor.class
-es/udc/ws/app/restservice/dto/RespuestaToRestRespuestaDtoConversor.class
-es/udc/ws/app/restservice/servlets/EncuestaServlet.class
