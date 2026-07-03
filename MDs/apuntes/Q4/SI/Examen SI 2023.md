@@ -4,7 +4,7 @@
 
 Dado el siguiente grafo, en donde (i) el nodo inicial es $A$ y el nodo meta es $G$, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística $h$, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados:
 
-![[Pasted image 20260604190102.png]]
+![[grafo2023.png]]
 
 Aplicando el algoritmo A* basado en **grafo**, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor $f$, $f=h+g$, y que en caso de empate en valor $f$, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):
 
@@ -164,7 +164,7 @@ En el algoritmo de profundidad iterativa se cumple que la cantidad de nodos hoja
 ### 6. Escalada (Hill-Climbing) y Árboles
 
 En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de: 
-![[Pasted image 20260604190422.png]]
+![[arbolHillClimbing2023.png]]
 - [ ] a) Mínimo local.
     
 - [ ] b) Máximo local.
@@ -206,59 +206,92 @@ Señala la respuesta correcta:
 > - La c) es falsa: la mayor virtud de los modelos declarativos y modulares (como la base de hechos/reglas) es que se puede incorporar nuevo conocimiento **añadiendo axiomas a la base** sin necesidad de alterar o recodificar todo el motor.
 >     
 
+
 ### 8. Traza en Sistemas de Producción (Encadenamiento Progresivo)
 
-En el contexto de un sistema de producción, se parte de la siguiente base de reglas y estado de la memoria activa inicial ($M0$):
+En el contexto de un sistema de producción, se parte de la siguiente base de reglas y estado de la Memoria Activa inicial ($M_0$):
 
-> R1: $A \wedge B \rightarrow C$
-> 
-> R2: $E \vee F \rightarrow D$
-> 
-> R3: $D \wedge C \rightarrow X$
-> 
-> R4: $B \wedge D \rightarrow R$
-> 
-> R5: $X \wedge R \rightarrow H$
-
-$M0 = \{A, B, E\}$ _(Nota: H es la hipótesis/meta buscada)_. Configuración: Encadenamiento progresivo. Activación de todas las reglas que emparejen con la memoria activa. _(Opciones omitidas por corte. Se formula la solución correcta inferida)_.
-
-- [ ] a) El sistema alcanzará la meta H en 3 ciclos de inferencia, dejando la Memoria Activa como M3 = {A, B, E, C, D, X, R, H}.
+- **R1:** $A \land B \implies C$
     
-- [ ] b) El sistema alcanzará la meta H en 5 ciclos de inferencia.
+- **R2:** $E \lor F \implies D$
     
-- [ ] c) El sistema no podrá alcanzar la meta H.
+- **R3:** $D \land C \implies X$
     
-- [ ] d) El sistema se quedará en bucle infinito.
+- **R4:** $B \land D \implies R$
+    
+- **R5:** $X \land R \implies H$
+    
+- **$M_0$** = $\{A, B, E\}$ _(Nota: $H$ es la meta buscada)_.
     
 
-> [!success]- Solución y Justificación
+**Configuración del Motor:** Encadenamiento progresivo. Búsqueda en profundidad, con la ejecución de la regla cuya premisa contenga el elemento en orden alfabético mayor de las que hayan sido activadas más recientemente (asumiendo que $A > B > C \dots$). ¿Cuál es la secuencia de ejecución de las reglas?
+
+- [ ] a) R2 $\rightarrow$ R1 $\rightarrow$ R3 $\rightarrow$ R4 $\rightarrow$ R5
+    
+- [ ] b) R1 $\rightarrow$ R2 $\rightarrow$ R3 $\rightarrow$ R4 $\rightarrow$ R5
+    
+- [ ] c) R2 $\rightarrow$ R1 $\rightarrow$ R4 $\rightarrow$ R3 $\rightarrow$ R5
+    
+- [ ] d) R1 $\rightarrow$ R2 $\rightarrow$ R4 $\rightarrow$ R3 $\rightarrow$ R5
+    
+
+> [!success]- Solución y Justificación (Traza paso a paso)
 > 
-> **Opción correcta: a)** _(O aquella opción que coincida con este análisis final)._
+> **Opción correcta: d)**
 > 
-> Aplicando la técnica de encadenamiento progresivo (dirigido por los datos) con activación múltiple simultánea por cada ciclo de barrido:
+> Un motor de inferencia clásico ejecuta **solo una regla por ciclo**. La estrategia de desempate dictamina que gana la regla "más reciente" (las que acaban de activarse en ese ciclo). Si hay empate de novedad, gana la que tenga la letra con mayor prioridad en el abecedario en sus premisas.
 > 
-> 1. **Ciclo 1:** El Motor examina $M0 = \{A, B, E\}$.
+> **CICLO 1:**
+> 
+> - **Memoria Activa (MA):** $\{A, B, E\}$
 >     
->     - R1 empareja (tenemos A y B). Concluye $C$.
->         
->     - R2 empareja (tenemos E, satisface $E \vee F$). Concluye $D$.
->         
->     - Ambas se ejecutan. $M1 = \{A, B, E, C, D\}$.
->         
-> 2. **Ciclo 2:** Con $M1$ actual, se realiza un nuevo barrido.
+> - **Conjunto Conflicto (CC):** Se activan **R1** (cumple $A \land B$) y **R2** (cumple $E$).
 >     
->     - R3 empareja (tenemos D y C). Concluye $X$.
->         
->     - R4 empareja (tenemos B y D). Concluye $R$.
->         
->     - Ambas se ejecutan. $M2 = \{A, B, E, C, D, X, R\}$.
->         
-> 3. **Ciclo 3:** Con $M2$ actual, se hace un nuevo barrido.
+> - **Resolución:** Ambas son recientes. Empate. Miramos sus premisas: $R1$ tiene la **A**, $R2$ tiene la **E**. Gana la $R1$ por orden alfabético.
 >     
->     - R5 empareja (tenemos X y R). Concluye $H$.
->         
->     - Se ejecuta. Se ha alcanzado la hipótesis o meta establecida ($H$), finalizando la inferencia en el tercer ciclo con $M3 = \{A, B, E, C, D, X, R, H\}$.
->         
+> - **Ejecución:** Se dispara **R1**. Añadimos $C$ a la memoria.
+>     
+> 
+> **CICLO 2:**
+> 
+> - **MA:** $\{A, B, E, C\}$
+>     
+> - **CC:** Revisamos si la nueva letra $C$ activa algo nuevo. $R3$ necesita la $D$, así que no. En el Conjunto Conflicto solo nos queda esperando la **R2**.
+>     
+> - **Ejecución:** Se dispara **R2**. Añadimos $D$ a la memoria.
+>     
+> 
+> **CICLO 3:**
+> 
+> - **MA:** $\{A, B, E, C, D\}$
+>     
+> - **CC:** Al entrar la $D$, se activan de golpe dos reglas nuevas: **R3** (cumple $D \land C$) y **R4** (cumple $B \land D$).
+>     
+> - **Resolución:** Ambas son hiper-recientes. Empate. Miramos sus premisas: $R3$ tiene $\{C, D\}$ (gana la **C**). $R4$ tiene $\{B, D\}$ (gana la **B**). Como la B va antes en el abecedario, gana $R4$.
+>     
+> - **Ejecución:** Se dispara **R4**. Añadimos $R$ a la memoria.
+>     
+> 
+> **CICLO 4:**
+> 
+> - **MA:** $\{A, B, E, C, D, R\}$
+>     
+> - **CC:** La nueva letra $R$ no activa $R5$ todavía (nos falta la $X$). En el Conjunto Conflicto nos queda esperando la **R3** desde el ciclo anterior.
+>     
+> - **Ejecución:** Se dispara **R3**. Añadimos $X$ a la memoria.
+>     
+> 
+> **CICLO 5:**
+> 
+> - **MA:** $\{A, B, E, C, D, R, X\}$
+>     
+> - **CC:** Al entrar la $X$, se activa por fin la regla **R5** (cumple $X \land R$).
+>     
+> - **Ejecución:** Se dispara **R5**. Llegamos a la meta $H$.
+>     
+> 
+> **Traza final:** $R1 \rightarrow R2 \rightarrow R4 \rightarrow R3 \rightarrow R5$.
+
 
 ### 9. Lógica Categórica (Base Lógica Reducida)
 

@@ -105,7 +105,7 @@ A partir de la siguiente tabla de nodos explorados, ¿qué tipo de búsqueda fue
 
 En un problema en el que estamos utilizando búsqueda local, tenemos la siguiente función de coste, en la que estamos buscando el valor máximo:
 
-![[Pasted image 20260604190838.png]]
+![[funciónHillClimbing2024.png]]
 
 Si estamos en el punto marcado, ¿qué deberíamos de hacer?
 
@@ -121,8 +121,16 @@ Si estamos en el punto marcado, ¿qué deberíamos de hacer?
 > [!success]- Solución y Justificación
 > 
 > **Opción correcta: b)**
-> 
-> En los métodos de búsqueda local de ascensión de colinas (_Hill-Climbing_), el algoritmo es "avaro" e ignora el historial (no tiene memoria para retroceder, lo que invalida la opción a). El algoritmo evalúa los estados vecinos actuales y "sube" hasta que ya no existe un vecino con un valor de rendimiento superior. Al estar situado justo en el pico de la montaña derecha, cualquier paso lateral supone un descenso. Como el algoritmo carece de visión global, se queda atrapado asumiendo que ha triunfado. Por tanto, su mecánica estándar es detener la ejecución y devolver el punto marcado, cayendo inevitablemente en la trampa topológica conocida como **máximo local**.
+>
+>En los algoritmos de Búsqueda Local pura (como la Ascensión de Colinas o _Hill-Climbing_), la máquina **carece de memoria histórica** (opera en el nodo actual con una complejidad espacial constante $O(1)$). Su mecánica es simple: evalúa sus estados vecinos inmediatos y se mueve hacia el que tenga mayor valor.
+>
+>En la gráfica, el punto marcado es un **Máximo Local**. Al evaluar a sus vecinos, el algoritmo ve que si da un paso a la izquierda, el valor baja; si da un paso a la derecha, el valor también baja. Como _ningún_ vecino mejora su situación actual, la condición de parada algorítmica se dispara de inmediato: la máquina asume que ha llegado a la cima absoluta del problema, **se detiene y devuelve el punto marcado** como su solución final (quedando trágicamente atascada sin encontrar el máximo global que está más a la izquierda).
+>
+>**Por qué las demás son falsas:**
+>
+>- **La a) es falsa:** Para poder "retroceder" (_backtracking_), el algoritmo necesitaría tener memoria y guardar el camino que ha recorrido (como hace la Búsqueda en Profundidad). La Búsqueda Local está diseñada específicamente para no guardar caminos, por lo que es físicamente incapaz de retroceder.
+ >   
+>- **La c) es falsa:** La búsqueda local clásica evalúa iterativamente paso a paso aplicando un solo operador para mirar al vecino inmediato. No puede saltarse la ceguera encadenando operadores de golpe.
 
 ### 6. Evaluación de heurísticas y funciones
 

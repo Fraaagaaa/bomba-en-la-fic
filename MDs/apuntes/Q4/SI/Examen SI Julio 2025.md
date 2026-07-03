@@ -496,7 +496,7 @@ Las neuronas de la capa de entrada de un perceptrón multicapa...
 
 - [ ] a) Comparando la salida obtenida y la salida deseada para esa capa oculta.
     
-- [ ] b) (Opción referente a la propagación hacia atrás desde las capas posteriores).
+- [ ] b) Poniéndolo en función del error calculado en la siguiente capa.
     
 - [ ] c) No lo calcula, puesto que no es necesario modificar los pesos de las capas ocultas.
     
@@ -507,7 +507,7 @@ Las neuronas de la capa de entrada de un perceptrón multicapa...
 
 > [!success]- Solución y Justificación
 > 
-> **Opción correcta: b)** _(Propagación desde capas posteriores basada en pesos derivados)._
+> **Opción correcta: b)** 
 > 
 > Dado que las capas ocultas no disponen de una "salida deseada" o patrón objetivo que se les pueda comparar (como sí tiene la capa de salida), el algoritmo _Backpropagation_ (Propagación hacia atrás) resuelve este escollo calculando el gradiente en las neuronas ocultas de forma recursiva a partir del error de la capa inmediatamente posterior, ponderado por el valor de los pesos de conexión entre ellas.
 
@@ -927,15 +927,11 @@ En un algoritmo genético:
 > 
 > A pesar de que los Algoritmos Genéticos operan de manera óptima fusionando cruce y mutación, en el hipotético caso arquitectónico en el que el operador de recombinación o cruce se desactivase (tasa de 0%), la mutación continuaría de forma residual introduciendo material genético de experimentación (variabilidad) y el sistema de selección se ocuparía de salvaguardar los hallazgos valiosos. Seguiría progresando y resolviendo el problema, operando prácticamente como una "Búsqueda Aleatoria Guiada" (Estrategia Evolutiva).
 
-¡Hecho! He estructurado estas tres últimas preguntas manteniendo exactamente el mismo formato de Obsidian (_checkboxes_ y _callouts_ colapsables) que veníamos usando.
-
-Para la **Pregunta 40**, he analizado los principios teóricos de la asignatura sobre Computación Evolutiva y Vida Artificial (basándome en el comportamiento de heurísticas y sistemas subsimbólicos) para determinar que la opción correcta es la **C**, y te he redactado una justificación completa acorde al nivel de tus apuntes.
-
-Aquí tienes el bloque listo para copiar y pegar en tu bóveda:
 
 ### 38. Representación en Programación Genética
 
-Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta? _(Nota: el árbol cuenta con terminales como las variables $X$, $Y$ y constantes numéricas como $1$, $14$)_.
+Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta? 
+![[PropagaciónGeneticaJulio2025.png|400]]
 
 - [ ] a) El conjunto de componentes terminales es sólo `[1, 14]`.
     
