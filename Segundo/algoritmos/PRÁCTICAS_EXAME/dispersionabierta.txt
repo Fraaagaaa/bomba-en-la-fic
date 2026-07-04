@@ -1,0 +1,153 @@
+#include "dispersion.h"
+
+// Estructura para los nodos de la lista enlazada
+typedef struct nodo {
+    char clave[LONGITUD_CLAVE];
+    char sinonimos[LONGITUD_SINONIMOS];
+    struct nodo *siguiente;
+} nodo;
+
+typedef nodo *lista;
+typedef lista *tabla_abierta;
+
+void inicializar_tabla(tabla_abierta *t, int tam) {
+    *t = malloc(tam * sizeof(lista));
+    for(int i = 0; i < tam; i++) {
+        (*t)[i] = NULL;
+    }
+}
+
+// Busca un elemento en la lista enlazada
+lista buscar_lista(char *clave, lista l) {
+    while(l != NULL && strcmp(l->clave, clave) != 0) {
+        l = l->siguiente;
+    }
+    return l;
+}
+
+// Función de búsqueda principal
+lista buscar(char *clave, tabla_abierta t, int tam, 
+             unsigned int (*dispersion)(char *, int)) {
+    unsigned int pos = dispersion(clave, tam);
+    return buscar_lista(clave, t[pos]);
+}
+
+// Inserta un nuevo elemento en la lista
+void insertar_lista(char *clave, char *sinonimos, lista *l) {
+    lista nuevo = malloc(sizeof(nodo));
+    strcpy(nuevo->clave, clave);
+    strcpy(nuevo->sinonimos, sinonimos);
+    nuevo->siguiente = *l;
+    *l = nuevo;
+}
+
+// Función de inserción principal
+void insertar(char *clave, char *sinonimos, tabla_abierta t, int tam,
+             unsigned int (*dispersion)(char *, int)) {
+    if(buscar(clave, t, tam, dispersion) == NULL) {
+        unsigned int pos = dispersion(clave, tam);
+        insertar_lista(clave, sinonimos, &t[pos]);
+    }
+}
+
+void mostrar_tabla(tabla_abierta t, int tam) {
+    printf("{\n");
+    for(int i = 0; i < tam; i++) {
+        printf("%d: ", i);
+        lista actual = t[i];
+        while(actual != NULL) {
+            printf("(%s : %s) -> ", actual->clave, actual->sinonimos);
+            actual = actual->siguiente;
+        }
+        printf("NULL\n");
+    }
+    printf("}\n");
+}
+
+double medir_tiempos(item *datos, int num_items, int k,
+                    unsigned int (*dispersion)(char*, int)) {
+    double t_test = 0.0, t_inicio = 0.0, t_fin = 0.0;
+    int i, j, n, ran, umbral;
+    tabla_abierta t;
+    
+    // Inicializar y rellenar la tabla
+    inicializar_tabla(&t, TAM_TABLA_FINAL);
+    for(i = 0; i < num_items; i++) {
+        insertar(datos[i].clave, datos[i].sinonimos, t, TAM_TABLA_FINAL, dispersion);
+    }
+    
+    printf("\n* Dispersión abierta con %s *\n", 
+           dispersion == dispersionA ? "dispersionA" : "dispersionB");
+    printf("Insertando %d elementos...\n", num_items);
+    printf("Buscando n elementos...\n\n");
+    printf("%12s %14s %20s %15s\n", "n", "t(n)", "t(n)/n", "t(n)/(n*log(n))");
+    
+    for(n = 125; n <= MAX_NUM; n *= 2) {
+        t_inicio = microsegundos();
+        umbral = 0;
+        
+        for(j = 0; j < n; j++) {
+            ran = rand() % (num_items - 1);
+            buscar(datos[ran].clave, t, TAM_TABLA_FINAL, dispersion);
+        }
+        
+        t_fin = microsegundos();
+        t_test = t_fin - t_inicio;
+        
+        if(t_test < 500) {
+            umbral = 1;
+            t_inicio = microsegundos();
+            for(i = 0; i < k; i++) {
+                for(j = 0; j < n; j++) {
+                    ran = rand() % (num_items - 1);
+                    buscar(datos[ran].clave, t, TAM_TABLA_FINAL, dispersion);
+                }
+            }
+            t_fin = microsegundos();
+            t_test = (t_fin - t_inicio) / k;
+        }
+        
+        // Calcular cotas
+        double cota_lineal = t_test/n;
+        double cota_nlogn = t_test/(n * log(n));
+        
+        if(umbral) {
+            printf("(*)%10d %15.3f %18.7f %16.7f\n", 
+                   n, t_test, cota_lineal, cota_nlogn);
+        } else {
+            printf("   %10d %15.3f %18.7f %16.7f\n", 
+                   n, t_test, cota_lineal, cota_nlogn);
+        }
+    }
+    
+    // Liberar memoria
+    for(i = 0; i < TAM_TABLA_FINAL; i++) {
+        lista actual = t[i];
+        while(actual != NULL) {
+            lista temp = actual;
+            actual = actual->siguiente;
+            free(temp);
+        }
+    }
+    free(t);
+    
+    return t_test;
+}
+
+int main() {
+    item datos[19062];
+    int num_items = leer_sinonimos(datos);
+    if(num_items == EXIT_FAILURE) {
+        return EXIT_FAILURE;
+    }
+    
+    inicializar_semilla();
+    
+    // Medir tiempos con ambas funciones de dispersión
+    medir_tiempos(datos, num_items, 1000, dispersionA);
+    printf("\n");
+    medir_tiempos(datos, num_items, 1000, dispersionB);
+    
+    return 0;
+}
+

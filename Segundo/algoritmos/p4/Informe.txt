@@ -1,0 +1,92 @@
+INFORME PŔACTICA 4 ALGORITMOS
+
+Realizado por:
+- Xián Cotelo Varela (x.cotelo@udc.es)
+- Miguel Fraga PIco (miguel.fraga.pico@udc.es)
+ Grupo: 3.3
+
+- INTRODUCIÓN -
+Nesta práctica comparanse un metodo de ordenación por monticulos en contraste con los métodos de ordenación de la práctica 2, en 3 casos:
+
+  1. O vector xa está ordenado en orde ascendente.
+  2. O vector xa está ordenado en orde descendente.
+  3. O vector está inicialmente desordenado.
+
+As operacións que se implementaron foron:
+
+    - Inicialización do montículo (iniMonticulo)
+    - Inserción dun elemento usando "flotar" (insertarMonticulo)
+    - Eliminación do menor elemento utilizando "hundir" (quitarMenor)
+    - Consultar o menor elemento (consultarMenor)
+    - Creación dun montículo a partir dun vector (crearMonticulo)
+
+Ademais, implementouse a ordenación por montículos (ordenarPorMonticulos), que combina as operacións anteriores para ordenar vectores. 
+Por último, realizouse unha análise empírica das complexidades utilizando os 3 criterios de ordenación anteriormente mencionados.
+
+1.- CARACTERÍSTICAS DA MÁQUINA
+
+ Modelo ordenador: Acer Nitro-AN515-58
+ Version del sistema operativo: Ubuntu 24.04.1 LTS
+ Tipo de sistema operativo: 64 bits
+ Kernel: 5.15.0-122-generic
+ Procesador: Intel i7-12700H
+ Memoria RAM: 16 GB
+
+Compilador: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+
+2.- UNIDADES DE MEDIDA
+
+ Os tempos serán medidos en microsegundos.
+
+3.- REALIZACIÓN
+
+Para verificar que o algoritmo de ordenación funciona correctamente implementamos unha función de proba chamada test. 
+Esta función creará un montículo de 15 elementos e mostraráos en pantalla nivel a nivel. Eliminando o menor e ordenándoo correctamente.
+
+4.- RESULTADOS
+
+- Os resultados cun * foron medidos facendo varias repeticións do algoritmo para o mesmo numero de iteracións debido á sua velocidade.
+
+Vector ascendente
+| L |    N    |   Tempo   |    t(n)/n     |t(n)/(n*log(n))|   t(n)/n¹·²   |
+|   |   16000 |   3329.00 |     0.2080625 |  0.0214932961 |      0.030017 |
+|   |   32000 |   7112.00 |     0.2222500 |  0.0214248025 |      0.027913 |
+|   |   64000 |  15355.00 |     0.2399219 |  0.0216797429 |      0.026232 |
+|   |  128000 |  32658.00 |     0.2551406 |  0.0216960270 |      0.024285 |
+|   |  256000 |  64535.00 |     0.2520898 |  0.0202434117 |      0.020889 |
+
+ - Cota subestimada: n
+ - Cota axustada: n*log(n), estabilízase no valor ~0.21
+ - Cota sobreestimada: t(n)/n¹·²
+
+Vector descendente
+| L |    N    |   Tempo   |    t(n)/n     |t(n)/(n*log(n))|   t(n)/n¹·²   |
+|   |   16000 |   3146.00 |     0.1966250 |  0.0203117782 |      0.028367 |
+|   |   32000 |   7095.00 |     0.2217187 |  0.0213735903 |      0.027847 |
+|   |   64000 |  14794.00 |     0.2311563 |  0.0208876664 |      0.025274 |
+|   |  128000 |  34151.00 |     0.2668047 |  0.0226878872 |      0.025395 |
+|   |  256000 |  68862.00 |     0.2689922 |  0.0216007099 |      0.022289 |
+
+ - Cota subestimada: n
+ - Cota axustada: n*log(n), estabilízase no valor ~0.21
+ - Cota sobreestimada: t(n)/n¹·²
+
+Vector aleatorio
+| L |    N    |   Tempo   |    t(n)/n     |t(n)/(n*log(n))|   t(n)/n¹·²   |
+|   |   16000 |   3570.00 |     0.2231250 |  0.0230492842 |      0.032190 |
+|   |   32000 |   8003.00 |     0.2500938 |  0.0241089278 |      0.031410 |
+|   |   64000 |  17371.00 |     0.2714219 |  0.0245261358 |      0.029676 |
+|   |  128000 |  35763.00 |     0.2793984 |  0.0237588038 |      0.026594 |
+|   |  256000 |  73787.00 |     0.2882305 |  0.0231455895 |      0.023883 |
+
+ - Cota subestimada: n
+ - Cota axustada: n*log(n), estabilízase no valor ~0.24
+ - Cota sobreestimada: t(n)/n¹·²
+ 
+- CONCLUSIÓN -
+
+No caso dun vector ordenado, quick sort e ordenación por inserción son moito máis eficientes ca ordenación por monticulos, tendo ambos
+unha complexidade de O(n), a diferencia da ordenación por monticulos cunha complexidade de O(n*log(n))
+
+No canto do vector descendente e aleatorio, a ordenación por monticulos é mais eficiente que inserción, sendo as suas complexidades
+O(nlog(n)) e O(n²) respectivamente; comparado con quick sort, a ordenación por monticulos é moito mais ineficiente, quick sort mantén unha complexidade de O(n¹·¹)

@@ -1,0 +1,50 @@
+void mediana3(int v[], int izq, int der) {
+    int medio = (izq + der)/2;
+    
+    // Ordenar los elementos izq, medio y der
+    if (v[izq] > v[medio])
+        intercambiar(&v[izq], &v[medio]);
+    if (v[medio] > v[der])
+        intercambiar(&v[medio], &v[der]);
+    if (v[izq] > v[medio])
+        intercambiar(&v[izq], &v[medio]);
+        
+    // Colocar la mediana en la posición izq
+    intercambiar(&v[medio], &v[izq]);
+}
+
+void ord_rap_aux(int v[], int izq, int der) {
+    int i, j;
+    int pivote;
+    
+    if (izq < der) {
+        if (der - izq >= 3) {
+            mediana3(v, izq, der);
+        }
+        pivote = v[izq];
+        i = izq + 1;
+        j = der;
+        
+        while (i <= j) {
+            while (i <= der && v[i] < pivote) {
+                i++;
+            }
+            while (v[j] > pivote) {
+                j--;
+            }
+            if (i <= j) {
+                intercambiar(&v[i], &v[j]);
+                i++;
+                j--;
+            }
+        }
+        
+        intercambiar(&v[izq], &v[j]);
+        ord_rap_aux(v, izq, j-1);
+        ord_rap_aux(v, j+1, der);
+    }
+}
+
+void ord_rap(int v[], int n) {
+    ord_rap_aux(v, 0, n-1);
+}
