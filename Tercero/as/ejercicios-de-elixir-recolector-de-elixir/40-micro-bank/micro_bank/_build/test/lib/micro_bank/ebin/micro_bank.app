@@ -1,1 +1,0 @@
-{application,micro_bank,[{modules,['Elixir.MicroBank.Application','Elixir.MicroBank.Server']},{optional_applications,[]},{applications,[kernel,stdlib,elixir,logger]},{description,"micro_bank"},{registered,[]},{vsn,"0.1.0"},{mod,{'Elixir.MicroBank.Application',[]}}]}.

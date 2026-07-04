@@ -1,6 +1,0 @@
-fastapi
-fastapi-cli
-sqlmodel
-pytest
-requests
-faker
